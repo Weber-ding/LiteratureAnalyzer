@@ -1,0 +1,8 @@
+PyMuPDF>=1.21.0
+python-pptx>=0.6.21
+python-docx>=0.8.11
+openai>=1.0.0
+PySide6_Essentials>=6.5.0
+shiboken6>=6.5.0
+requests>=2.28.0
+beautifulsoup4>=4.12.0

@@ -1,0 +1,8 @@
+{
+  "api_endpoint": "https://api.openai.com/v1",
+  "api_key": "sk-your-api-key-here",
+  "model": "gpt-4o-mini",
+  "max_concurrency": 2,
+  "library_root": "D:\\Obsidian\\文献库",
+  "output_dir": "D:\\Obsidian\\文献库\\00-文献"
+}
