@@ -20,6 +20,11 @@ echo === 当前状态 ===
 "%GIT%" status -sb
 echo.
 
+REM 若 GH_TOKEN 环境变量存在，刷新远程 URL 中的 token（防止过期）
+if defined GH_TOKEN (
+    "%GIT%" remote set-url origin "https://x-access-token:%GH_TOKEN%@github.com/Weber-ding/LiteratureAnalyzer.git"
+)
+
 set /p MSG="请输入本次更新说明（留空则使用默认）: "
 if "%MSG%"=="" set MSG=更新
 
@@ -37,12 +42,22 @@ if errorlevel 1 (
 )
 
 echo.
+set /p TAG="是否打版本标签？输入版本号如 v1.1.0（留空则不打标签）: "
+if defined TAG (
+    "%GIT%" tag "%TAG%"
+    echo 已创建标签 %TAG%
+)
+
+echo.
 echo === 推送到 GitHub ===
 "%GIT%" push origin main
 if errorlevel 1 (
     echo [错误] 推送失败，请检查网络或权限。
     pause
     exit /b 1
+)
+if defined TAG (
+    "%GIT%" push origin "%TAG%"
 )
 
 echo.
